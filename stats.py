@@ -1,12 +1,26 @@
-def get_num_words(book_words):
-    return len(book_words.split())
+def get_num_words(text):
+    words = text.split()
+    return len(words)
 
-def counting_characher(text):
-    book_text = {}
-    for char in text.lower():
-        if char in book_text:
-            book_text[char] += 1
+
+def get_chars_dict(text):
+    chars = {}
+    for c in text:
+        lowered = c.lower()
+        if lowered in chars:
+            chars[lowered] += 1
         else:
-            book_text[char] = 1
-    return book_text
-   
+            chars[lowered] = 1
+    return chars
+
+
+def sort_on(d):
+    return d["num"]
+
+
+def chars_dict_to_sorted_list(num_chars_dict):
+    sorted_list = []
+    for ch in num_chars_dict:
+        sorted_list.append({"char": ch, "num": num_chars_dict[ch]})
+    sorted_list.sort(reverse=True, key=sort_on)
+    return sorted_list
